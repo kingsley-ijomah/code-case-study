@@ -1,0 +1,230 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
+.post-write {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1rem;
+
+  @mixin post-write__wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.3em;
+  }
+
+  @mixin post-write__label {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 0.33em;
+    letter-spacing: 0.033em;
+  }
+
+  @mixin post-write__input {
+    font: initial;
+    font-size: 1.1em;
+    font-weight: 400;
+    line-height: 200%;
+    padding: 0rem 0.33em;
+
+    &:focus {
+      outline-color: $main-color;
+      outline-width: 10px;
+    }
+  }
+
+  &__form {
+  }
+
+  &__title {
+    &__wrap {
+      @include post-write__wrap;
+    }
+    &__label {
+      @include post-write__label;
+    }
+    &__input {
+      @include post-write__input;
+      width: 100%;
+    }
+  }
+
+  &__file {
+    &__wrap {
+      @include post-write__wrap;
+      position: relative;
+    }
+
+    &__btn-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+
+      & > span:nth-child(n + 2):before {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 2px;
+        margin: 0 5px 0 3px;
+        background-color: #e3e3e3;
+        vertical-align: middle;
+      }
+    }
+
+    &__label {
+      width: fit-content;
+      border: 1px dotted $main-color--dark-silver;
+      border-radius: 0.2rem;
+      padding: 0.2em 0.4em;
+      color: $main-color--dark-silver;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        background-color: $main-color--dark-silver;
+        color: $main-color--white;
+      }
+    }
+
+    &__cnt {
+      margin-left: 0.2rem;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    &__entire-size {
+      display: none; // 파일이 업로드될 때 보여지도록 js에서 설정
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    &__warn-msg {
+      display: none; // 파일이 업로드될 때 보여지도록 js에서 설정
+      font-size: 0.8em;
+      color: tomato;
+    }
+
+    &__input {
+      position: absolute;
+      top: -200em;
+    }
+
+    &__list {
+      position: relative;
+      width: 100%;
+      height: 8em;
+      border: 1px dashed $main-color--silver;
+      margin-top: 0.5em;
+      overflow: auto;
+    }
+
+    @mixin file-list-grid {
+      display: grid;
+      grid-template-columns: [fileName] 1fr [fileSize] 10rem;
+      // min-width: 0;
+
+      & > span:nth-child(1) {
+        @include ellipsis;
+        grid-area: fileName;
+      }
+
+      & > span:nth-child(2) {
+        @include ellipsis;
+        grid-area: fileSize;
+      }
+    }
+
+    &__header {
+      @include file-list-grid;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      font-weight: 700;
+      background-color: #f0f0f0;
+      border-bottom: 0.5px dashed #eee;
+
+      & > span {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &__item {
+      @include file-list-grid;
+
+      & > span:nth-child(1) {
+        padding: 0 0.5em;
+      }
+
+      & > span:nth-child(2) {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__paragraph {
+    &__wrap {
+      @include post-write__wrap;
+    }
+    &__label {
+      @include post-write__label;
+    }
+    &__input {
+      @include post-write__input;
+      resize: none;
+      height: 20rem;
+    }
+  }
+
+  &__submit {
+    &__wrap {
+      @include post-write__wrap;
+      align-items: flex-end; // direction is 'column'
+    }
+
+    &__refuse-msg-list {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      margin-bottom: 0.33em;
+    }
+
+    &__refuse-msg-item {
+      color: tomato;
+      line-height: 1.2;
+
+      &::before {
+        content: '▪';
+      }
+    }
+
+    &__btn {
+      @include btn-rectangle(0.66rem, true, true);
+      color: white;
+      font-size: 1.05rem;
+      background-color: $main-color;
+      width: fit-content;
+    }
+  }
+
+  @include for-mobile {
+    &__file {
+      &__btn-wrapper {
+        width: 100%;
+        justify-content: center;
+      }
+
+      &__cnt {
+        vertical-align: bottom;
+      }
+    }
+  }
+}

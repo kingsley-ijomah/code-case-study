@@ -1,0 +1,216 @@
+.cover {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+
+  &--covered {
+    display: block;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  width: 23rem;
+  max-width: 100%;
+  height: 100%;
+  right: -23rem;
+  top: 0;
+  background-color: #fefefe;
+  color: $main-color--dark-silver;
+  z-index: 6;
+  transition: right 0.3s ease-in-out;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &--show {
+    right: 0;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 0.66rem;
+
+    &__icon {
+      position: absolute;
+      z-index: 99;
+      top: 0.66rem;
+      right: 0.66rem;
+      width: 1.33rem;
+      height: 1.33rem;
+      cursor: pointer;
+
+      svg {
+        path {
+          stroke-width: 40;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        svg {
+          path {
+            stroke-width: 60;
+          }
+        }
+      }
+    }
+
+    &__logo {
+      display: flex;
+      width: fit-content;
+      font-size: 1rem;
+
+      &__txt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        letter-spacing: 0.06em;
+        font-weight: 700;
+
+        & > :nth-of-type(1) {
+          color: rgba($main-color--dark-silver, 0.9);
+          font-size: 0.8em;
+        }
+
+        & > :nth-of-type(2) {
+          color: rgba($main-color--black, 0.9);
+          font-size: 1.3em;
+          line-height: 1.3em;
+        }
+      }
+
+      &__icon {
+        position: relative;
+        top: -0.5em;
+        left: -0.4em;
+        transform: rotateZ(-5deg);
+        width: 3.8em;
+        height: 3.8em;
+        background: url('../../../img/logo/main_logo.svg') no-repeat center/contain;
+      }
+    }
+  }
+
+  &__auth {
+    display: flex;
+    padding: 0;
+    border-top: 2px solid $main-color--dark-silver;
+    border-bottom: 2px solid $main-color--dark-silver;
+    margin-bottom: 10px;
+
+    &__item {
+      flex: 1;
+      height: 4.5rem;
+    }
+
+    &__link {
+      @mixin sidebar-auth-btn {
+        @include btn-rectangle(1rem 0, false, false);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: initial;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.3rem;
+        width: 100%;
+        height: 100%;
+      }
+
+      &--login {
+        @include sidebar-auth-btn;
+        background-color: $main-color;
+        text-shadow: 0.01em 0.02em 0.1em black;
+      }
+
+      &--logout {
+        @include sidebar-auth-btn;
+        background-color: $main-color--silver;
+        text-shadow: 0.04em 0.08em 0.15em black;
+      }
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+    }
+  }
+
+  &__list {
+    height: 100%;
+  }
+
+  &__item {
+    position: relative;
+    font-size: 1.3em;
+    font-weight: 700;
+
+    &__icon {
+      position: absolute;
+      z-index: 99;
+      right: 1.33rem;
+      top: 2.3rem; // 주의: 유동적이지 못한 수치입니다.
+      width: 0.8rem;
+      height: 0.8rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+
+      svg {
+        position: absolute !important;
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+  }
+
+  &__btn {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 2.2rem 2rem;
+    color: $main-color--white;
+    background-color: $main-color--dark-silver;
+    font-weight: 400;
+    cursor: pointer;
+
+    &--active {
+      & .sidebar__btn {
+        background-color: $main-color;
+      }
+
+      svg {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  &__inner-item {
+    border-bottom: 0.5px solid rgba($main-color--silver, 0.3);
+  }
+
+  &__inner-list {
+    display: none;
+    height: 100%;
+  }
+
+  &__inner-list--clicked {
+    display: block;
+  }
+
+  &__inner-link {
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 2rem 4rem;
+  }
+}

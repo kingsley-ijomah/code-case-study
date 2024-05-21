@@ -1,0 +1,36 @@
+article.join
+    |
+    |
+    .join__overlay
+    |
+    |
+    form(action="/auth/join" method="post" autocomplete="off").join__form
+        |
+        |
+        .join__form__close-btn
+            +icon("close", '닫기', '#f5f5f5')
+        .join__form__title 회원가입
+        |
+        |
+        .join__form__input-box
+            input(type="text" name="id" minlength="4" maxlength="10" required).join__form__input.js-authInput
+            label.join__form__input-label 사용자 이름 (영문 4자 이상 10자 이하)
+            span.join__form__input-check.js-inputCheck
+        .join__form__input-box
+            input(type="password" name="password" minlength="8" maxlength="50" autocomplete="new-password" required ).join__form__input.js-authInput
+            label.join__form__input-label 비밀번호 (영문, 숫자, 기호를 조합하여 8자 이상)
+            span.join__form__input-check.js-inputCheck
+        .join__form__input-box
+            input(type="password" name="pwcheck" minlength="1" autocomplete="new-password" required).join__form__input.js-authInput
+            label.join__form__input-label 비밀번호 확인
+            span.join__form__input-check.js-inputCheck
+        //- TODO: 자동입력 방지 테스트 추가
+        .join__form__input-box
+            input(type="email" name="email" required ).join__form__input.js-authInput
+            label.join__form__input-label 이메일 (비밀번호 찾기에 사용됩니다)
+            span.join__form__input-check.js-inputCheck
+             //- TODO: 비밀번호를 찾는데 사용됩니다 주의 문구 추가
+        //- TODO: 패스워드 안 보이게 / 보이게 하는 버튼 추가
+        |
+        |
+        input(type="submit" value="회원가입" disabled).join__form__join-btn

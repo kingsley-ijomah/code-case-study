@@ -1,0 +1,22 @@
+# 웹팩 아웃풋 폴더
+public
+
+# .env
+.env
+
+# 프로젝트 의존성
+node_modules
+
+# 서버 이미지 파일
+uploads
+
+# macOS 폴더 속성
+.DS-Store
+
+# 임시 파일
+*.tmp
+*~
+
+# log 파일
+log
+*.log

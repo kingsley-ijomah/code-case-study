@@ -1,0 +1,39 @@
+include ../../common/_mixins.pug
+
+doctype html
+html(lang="ko")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title 이메일 확인
+        link(rel="stylesheet" href="/css/common.css")
+        link(rel="stylesheet" href="/css/forgot_sendEmail.css")
+        script(src="/es5/forgot_sendEmail.js")
+    body 
+        article.find
+            |
+            |
+            .find__overlay
+            |
+            |
+            form(action="/auth/forgot_sendEmail" method="post" autocomplete="off").find__form.find__form--send-email
+                |
+                |
+                //- TODO: 뒤로가기버튼(로그인 창으로 돌아가기) 추가하기
+                .find__form__close-btn
+                    +icon("close", '닫기', '#f5f5f5')
+                .find__form__title 비밀번호 변경
+                |
+                |
+                fieldset.find__form__fieldset.find__form__fieldset--send-email
+                    .find__form__input-box
+                        input(
+                            type="email"
+                            name="email"
+                            id="email"
+                            minlength="1"
+                            required
+                            ).find__form__input
+                        label(for="email").find__form__input-label 가입 시 등록했던 이메일을 입력해주세요
+                        span.find__form__input-check.js-inputCheck
+                    input(type="submit" value="이메일 보내기").find__form__btn.find__form__btn--send-email

@@ -1,0 +1,58 @@
+header.header
+  a(href='/').header__logo
+    .header__logo__icon
+    .header__logo__txt
+      span 대덕대학교
+      span 컴퓨터정보학과
+  .header-menu
+    ul.header-menu__list
+      li.header-menu__item
+        a(href="/intro/info").header-menu__title 학과소개
+        .header-menu-dropdown
+          .header-menu-dropdown__list
+            a(href="/intro/info").header-menu-dropdown__link 학과소개
+            a(href="/intro/member").header-menu-dropdown__link 구성원
+            a(href="/intro/env").header-menu-dropdown__link 교육 환경
+            a(href="/intro/club").header-menu-dropdown__link 동아리
+
+      li.header-menu__item
+        a(href="/milestone/curriculum").header-menu__title 학과진로
+        .header-menu-dropdown
+          .header-menu-dropdown__list
+            a(href="/milestone/curriculum").header-menu-dropdown__link 교육 목표
+            a(href="/milestone/cert").header-menu-dropdown__link 자격증 소개
+            a(href="/milestone/career").header-menu-dropdown__link 진로 설정
+            |
+            |
+      li.header-menu__item
+        a(href="/community/board").header-menu__title 커뮤니티
+        .header-menu-dropdown
+          .header-menu-dropdown__list
+            a(href="/community/board").header-menu-dropdown__link 학과 이야기
+            a(href="/community/suggestion").header-menu-dropdown__link 바라는 점
+            a(href="/community/donation").header-menu-dropdown__link 나눔의 공간
+            a(href="/community/notice").header-menu-dropdown__link 공지사항
+            |
+            |
+      li.header-menu__item
+        a(href="/footprint/acquisition").header-menu__title 학생 자취록
+        .header-menu-dropdown
+          .header-menu-dropdown__list
+            a(href="/footprint/acquisition").header-menu-dropdown__link 자격증 취득
+            a(href="/footprint/awards").header-menu-dropdown__link 대회 수상
+            a(href="/footprint/portfolio").header-menu-dropdown__link 포트폴리오
+            |
+            |
+  .header-util
+    ul.header-util__list
+      if user
+        li.header-util__item
+          a.header-util__link.header-util__link--logout.js-logoutBtn 로그아웃
+      else
+        li.header-util__item
+          .header-util__link.header-util__link--login.js-loginOpenBtn 로그인
+        li.header-util__item
+          .header-util__link.header-util__link--join.js-joinOpenBtn 회원가입
+      li.header-util__item
+        .header-util__btn
+          +icon('menu', '사이드바 열기', '#eee')

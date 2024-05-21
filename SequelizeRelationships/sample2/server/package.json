@@ -1,0 +1,47 @@
+{
+  "name": "fake",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-node": "^0.0.1-security",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "global": "^4.4.0",
+    "moment": "^2.29.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.13",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^3.0.0",
+    "sass": "^1.26.10",
+    "sequelize": "^6.3.5",
+    "serve-favicon": "^2.5.0",
+    "uuid": "^8.3.1",
+    "validator": "^13.1.17"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node ./src",
+    "dev:build": "webpack -w",
+    "server": "pm2 start ./src --interpreter ./node_modules/@babel/node/bin/babel-node.js"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.10.0",
+    "express-mysql-session": "^2.1.4",
+    "faker": "^5.1.0",
+    "helmet": "^4.1.0",
+    "mariadb": "^2.4.2",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "pm2": "^4.5.0"
+  }
+}

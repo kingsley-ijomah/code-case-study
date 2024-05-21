@@ -1,0 +1,28 @@
+strong {
+  font: 200% serif;
+  color: red;
+}
+
+/* Action: Using class and ID selectors */
+/* .carrot { color: orange; } */
+.spinach { color: green; }
+
+body {font: 16px "Comic Sans MS", cursive;}
+
+#first { font-style: italic; }
+p { color: blue; }
+
+
+/* id */
+#principal {
+  font-weight: bolder;
+}
+
+/* Pseudo-classes selectors */
+selector:pseudo-class {
+  property: value;
+}
+
+
+#data-table-1 td:first-child {font-weight: bolder;}
+  #data-table-1 td:first-child + td {font-family: monospace;}

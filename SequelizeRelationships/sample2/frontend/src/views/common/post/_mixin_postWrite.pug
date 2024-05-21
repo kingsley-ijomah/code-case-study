@@ -1,0 +1,24 @@
+//- 이 파일을 호출하는 ../_mixins.pug 파일은 ../base.pug 파일에서 include 되어있어,
+//-  index와 비밀번호 찾기 페이지를 제외한 모든 페이지에서 따로 include 없이 사용 가능합니다.
+
+//- Bulletn Board Post Write Template [ 게시판 글 작성 템플릿 ]
+mixin postWrite(url)
+  article.post-write
+    form(action=`${url}` method="post" enctype="multipart/form-data").post-write__form
+      .post-write__title__wrap
+        label(for="title").post-write__title__label 제목
+        input(type="text" name="title" maxlength="30" id="title" required).post-write__title__input
+      .post-write__file__wrap
+        .post-write__file__btn-wrapper
+          label(for="file").post-write__file__label 이미지 첨부
+          span.post-write__file__cnt 아직 업로드된 이미지가 없습니다.
+          span.post-write__file__entire-size
+          span.post-write__file__warn-msg
+        input(type="file" name="file" id="file" accept=".jpg, .jpeg, .png, .gif" multiple).post-write__file__input
+        ul.post-write__file__list
+      .post-write__paragraph__wrap
+        label(for="textarea").post-write__paragraph__label 내용
+        textarea(name="paragraph" id="textarea" required).post-write__paragraph__input
+      .post-write__submit__wrap
+        ul.post-write__submit__refuse-msg-list
+        submit(name="submit").post-write__submit__btn 작성하기

@@ -1,0 +1,8 @@
+# OS X file
+.DS_Store
+node_modules
+build
+babel.js
+*.class
+*.log
+*.pyc

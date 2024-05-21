@@ -1,0 +1,36 @@
+doctype html
+html(lang="ko")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        - const host = 'https://www.ddccomputer.club';
+        meta(http-equiv="Content-Security-Policy" content= `script-src 'self' ${host} https: 'unsafe-inline'; font-src 'self' ${host} http://fonts.gstatic.com; img-src 'self' ${host}`)
+        block title
+        link(rel="stylesheet" href="/css/common.css")
+        block stylesheet
+        script(defer src="/es5/common.js")
+        block script
+    body
+        include _mixins.pug
+        |
+        |
+        include templates/_header.pug
+        |
+        |
+        include templates/_sidebar.pug
+        |
+        |
+        block content
+            main
+        //- tempates/_sub-main.pug // 페이지 파일에 해당하는 파일의 코드를 복사해서 입맛대로 변경
+        |
+        |
+        include templates/_footer.pug
+        |
+        |
+        |
+        |
+        if !user
+            // default >> hide
+            include auth/_login.pug
+            include auth/_join.pug

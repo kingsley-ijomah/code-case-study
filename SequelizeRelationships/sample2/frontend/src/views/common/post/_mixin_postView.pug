@@ -1,0 +1,104 @@
+//- 이 파일을 호출하는 ../_mixins.pug 파일은 ../base.pug 파일에서 include 되어있어,
+//-  index와 비밀번호 찾기 페이지를 제외한 모든 페이지에서 따로 include 없이 사용 가능합니다.
+
+//- Bulletn Board Post View Template [ 게시판 글 상세보기 템플릿 ]
+//- 💥 게시판 글 상세보기 템플릿은 'url 에 존재하는 id 값으로 백엔드에서 정보를 찾아서 템플릿 엔진에 전달해주는 방법' 으로 설계되었습니다.
+//- 즉, 서버 사이드에서 해당하는 페이지의 데이터 렌더링이 모두 끝난 후 제공됩니다. 
+
+//- title, createdAt, writer, hit,
+//- file,
+//- 상세보기전 게시글 주소 (ex - community/board)
+mixin postView(post, referrer, accessUser, comments)
+  article.post-view
+    // 시간 가공 함수
+    mixin processDateTime(createdAt, updatedAt, kind)
+      - const now = new Date();
+      - const addTime = (hours, oldDate, newDate = now) => {newDate.setTime(oldDate.getTime() + (hours * 60 * 60 * 1000)); return newDate;}
+      - const yymmdd = (dateObj = addTime(9, now)) => dateObj.toISOString().match(/^\d{4}-\d{2}-\d{2}(?=T)/)[0];
+      - const hhmm = (dateObj = addTime(9, now)) => dateObj.toISOString().match(/(?<=T)\d{2}:\d{2}(?=:\d{2})/)[0];
+      
+      - const GMT = createdAt;
+      - const KST = addTime(9, GMT);
+      - const createdDate = yymmdd(KST);
+      - const createdTime = hhmm(KST);
+      - const isUpdated = createdAt.getTime() !== updatedAt.getTime() ? true : false;
+
+      case kind
+        when 'post'
+          div.post-view__header__prop.post-view__header__createdAt
+            span= createdDate
+            span= createdTime
+            if isUpdated
+              span ( 수정됨 )
+        when 'comment'
+          span= createdDate
+          span= createdTime
+          if isUpdated
+            span ( 수정됨 )
+    |
+    |
+    // 게시글 헤더
+    section.post-view__header
+      //- 헤더에 표시될 게시글의 속성 = ['title', 'createdAt', 'writer', 'hit'];
+      div.post-view__header__title= post.title
+      +processDateTime(post.createdAt, post.updatedAt, 'post')
+      div.post-view__header__prop.post-view__header__writer= post.UserId
+      div.post-view__header__prop.post-view__header__hit= post.Inquiries[0].count
+    |
+    |
+    // 게시글 내용
+    section.post-view__content
+      section.post-view__content__images
+        each image in post.Images
+          - const src = `https://www.ddccomputer.club/uploads/${image.src}`
+          img(src= src).post-view__content__image
+      //- 개발 환경 이미지 로드 불가 안내를 위한 이미지 유무 검증
+      - const isImage = Boolean(post.Images[0]);
+      output(data-is-image-for-localhost= `${isImage}`)
+      |
+      |
+      section.post-view__content__txt-wrap
+        pre.post-view__content__txt= post.content
+    |
+    |
+    // 게시글 푸터 (버튼 등)
+    section.post-view__footer
+      -const boardPath = referrer.match(/^.*(?=\/\d)/)[0]; // regExp ex) '/community/board/14' => '/community/board'
+      a(href= boardPath).post-view__footer__btn.post-view__footer__btn--board 목록
+      //- 로그인 되어있는 유저와 현재 게시글의 작성자가 일치한다면, 수정하기와 삭제하기 버튼 on
+      if accessUser === post.UserId
+        -const updatePagePath = `${referrer}/update`
+        -const deletePath = `${referrer}/delete?_method=DELETE`
+        section.post-view__footer__writer-btns
+          a(href= updatePagePath).post-view__footer__btn.post-view__footer__btn--update 수정
+          form(action= deletePath method="post").post-view__footer__delete-form
+            submit(name="").post-view__footer__btn.post-view__footer__btn--delete 삭제
+    |
+    |
+    // 게시글 댓글
+    section.post-view__comment
+      div.post-view__comment__cnt
+        span 댓글
+        span= comments.length
+      ul.post-view__comment__list
+        //- 댓글 생성 mixin
+        mixin commentItem(userId, createdAt, updatedAt, comment)
+          li.post-view__comment__item
+            section.post-view__comment__info
+              span= userId
+              +processDateTime(createdAt, updatedAt, 'comment')
+            section.post-view__comment__content-wrap
+              pre.post-view__comment__content= comment
+        |
+        |
+        each comment in comments
+          - const currData = comment.dataValues;
+          +commentItem(currData.UserId, currData.createdAt, currData.updatedAt, currData.comment)
+      if user
+        form(action=`` method="post").post-view__comment__form
+          textarea(placeholder="소중한 댓글 하나하나가 글 작성자에게 큰 힘이 됩니다." minlength="1" maxlength="400" required).post-view__comment__textarea
+          button(type="button").post-view__comment__btn 댓글 등록
+      else
+        p(class="js-recommendLoginMsg" style="margin-top: 1rem; text-align: right; font-weight: 700") 로그인하여 댓글을 작성해보세요!
+
+    //- (위에서 받은 boardPath로 postList 삽입 예정)

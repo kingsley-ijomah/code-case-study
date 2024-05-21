@@ -1,0 +1,97 @@
+/* -- scss default: mixin, veriables 등-- */
+@import '../../common/default/default.scss';
+/* --------------- */
+
+.post-update {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1rem;
+
+  @mixin post-update__wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.3em;
+  }
+
+  @mixin post-update__label {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 0.33em;
+    letter-spacing: 0.033em;
+  }
+
+  @mixin post-update__input {
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 200%;
+    padding: 0rem 0.33em;
+
+    &:focus {
+      outline-color: $main-color;
+      outline-width: 10px;
+    }
+  }
+
+  &__form {
+  }
+
+  &__title {
+    &__wrap {
+      @include post-update__wrap;
+    }
+    &__label {
+      @include post-update__label;
+    }
+    &__input {
+      @include post-update__input;
+      width: 100%;
+    }
+  }
+
+  &__paragraph {
+    &__wrap {
+      @include post-update__wrap;
+    }
+    &__label {
+      @include post-update__label;
+    }
+    &__input {
+      @include post-update__input;
+      resize: none;
+      height: 20rem;
+    }
+  }
+
+  &__submit {
+    &__wrap {
+      @include post-update__wrap;
+      align-items: flex-end; // direction is 'column'
+    }
+
+    &__refuse-msg-list {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      margin-bottom: 0.33em;
+    }
+
+    &__refuse-msg-item {
+      color: tomato;
+      line-height: 1.2;
+
+      &::before {
+        content: '▪';
+      }
+    }
+
+    &__btn {
+      @include btn-rectangle(0.66rem, true, true);
+      color: white;
+      font-size: 1.05rem;
+      background-color: $main-color;
+      width: fit-content;
+    }
+  }
+}

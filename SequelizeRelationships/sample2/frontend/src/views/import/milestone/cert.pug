@@ -1,0 +1,51 @@
+extends ../../common/base.pug
+
+block title
+  title 자격증 소개
+block append stylesheet
+  link(rel="stylesheet" href="/css/cert.css")
+block append script
+  script(defer src="/es5/cert.js")
+
+block content
+  main.sub-main
+    .sub-background
+    .sub-main__wrap
+
+      // 여기서부터 네비게이션 바 시작
+      .sub-nav
+        .sub-nav__title-wrap
+          h3.sub-nav__title 학과진로
+        .sub-nav__list-wrap
+          ul.sub-nav__list
+            li.sub-nav__item
+              a(href="/milestone/curriculum").sub-nav__link 교육 목표
+            li.sub-nav__item
+              a(href="#").sub-nav__link 자격증 소개
+            li.sub-nav__item
+              a(href="/milestone/career").sub-nav__link 진로 설정
+
+      // 여기서부터 콘텐츠 시작
+      .sub-contents
+        .sub-contents__wrap
+          .sub-contents__header
+            h2.sub-contents__title 자격증 소개
+            .sub-contents__util-wrap
+              ul.sub-contents__util-list
+                li.sub-contents__item
+                  +sub-contents__item__icon("home")
+                  a(href="/").sub-contents__item__link HOME
+                  +sub-contents__item__icon("chevronForward")
+                li.sub-contents__item
+                  a(href="/milestone/curriculum").sub-contents__item__link 학과진로
+                  +sub-contents__item__icon("chevronForward")
+                li.sub-contents__item
+                  a(href="/milestone/cert").sub-contents__item__link 자격증 소개
+
+        .sub-contents__content
+          .sub-content__national
+            h1.sub-content-title 국가공인자격
+            p.sub-content__paragraph 정보보안산업기사, 정보처리산업기사, 리눅스마스터
+          .sub-content__international
+            h1.sub-content-title 국제자격
+            p.sub-content__paragraph 시스코,네트워크자격증(CCNA, CCNP 등), 유닉스/리눅스 서버관리 국제자격증(SCSA,SCNA,LPIC 등 )마이크로소프트국제 자격증(MCSE, MCP),보안 및 네트워크 관리 국제 자격증(CompTIA A+, Network, Security+)

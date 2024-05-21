@@ -1,0 +1,30 @@
+//- variables
+
+//- font
+$font-family-not-loaded-hanguel: Roboto, sans-serif, Apple SD Gothic Neo;
+$font-family: Noto Sans KR, Roboto, sans-serif, Apple SD Gothic Neo;
+
+//- color
+$main-color: #149ab8;
+$main-color--sky-blue: #e3eef9;
+$main-color--silver: #bebebe;
+$main-color--dark-silver: #3e3e3e;
+$main-color--white: #f5f5f5;
+$main-color--black: #0f0f0f;
+
+$auth__font-color--before: $main-color--silver;
+$auth__font-color--after: rgb(245, 245, 245);
+
+//- shadow
+$text-shadow--black: 0.02em 0.04em 0.2em rgba(0, 0, 0, 0.5);
+$text-shadow--white: 0.02em 0.04em 0.2em rgba(255, 255, 255, 0.5);
+$box-shadow: 0.3vw 0.6vw 1.5vw rgba(0, 0, 0, 0.5);
+
+//- length
+$header-height: 5rem;
+$footer-height: 10rem;
+
+$sub-background-height--desktop: 25rem;
+$sub-background-height--laptop: 23rem;
+$sub-background-height--tablet: 23rem;
+$sub-background-height--mobile: $header-height;

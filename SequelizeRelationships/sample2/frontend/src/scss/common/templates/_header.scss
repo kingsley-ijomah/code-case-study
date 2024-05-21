@@ -1,0 +1,201 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: $header-height;
+  z-index: 3;
+  background-color: rgba(black, 0.4);
+  color: #fefefe;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+
+  &__logo {
+    display: flex;
+    position: absolute;
+    left: 1.8rem;
+    top: 54%;
+    transform: translateY(-50%);
+    width: fit-content;
+    font-size: 0.9rem;
+
+    &__txt {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      letter-spacing: 0.06em;
+      text-shadow: $text-shadow--black;
+
+      & > :nth-of-type(1) {
+        color: rgba($main-color--silver, 0.9);
+        font-size: 0.8em;
+      }
+
+      & > :nth-of-type(2) {
+        color: rgba($main-color--white, 0.9);
+        font-size: 1.3em;
+        line-height: 1.3em;
+      }
+    }
+
+    &__icon {
+      position: relative;
+      top: -0.5em;
+      left: -0.4em;
+      transform: rotateZ(-5deg);
+      width: 3.8em;
+      height: 3.8em;
+      background: url('../../../img/logo/main_logo.svg') no-repeat center/contain;
+    }
+  }
+
+  &-menu {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    margin: 0 25vw;
+
+    &__list {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      color: $main-color--white;
+    }
+
+    &__item {
+      width: 25%;
+      height: 100%;
+      text-align: center;
+    }
+
+    &__title {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      $pointer-height: 0.3rem;
+
+      &::before {
+        content: '';
+        width: 100%;
+        position: absolute;
+        z-index: 100;
+        bottom: -$pointer-height;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: $main-color;
+      }
+
+      &:hover::before,
+      &:focus::before {
+        height: $pointer-height;
+      }
+    }
+
+    &-dropdown {
+      position: absolute;
+      top: $header-height;
+      width: 25%;
+      background-color: rgb(244, 244, 244, 0.95);
+      box-sizing: border-box;
+      transition: all 0.2s ease-in-out;
+      visibility: hidden;
+      opacity: 0;
+      color: $main-color--black;
+
+      &__list {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        box-sizing: border-box;
+        font-size: 0.825em;
+      }
+
+      &__link {
+        padding: 1rem 0;
+      }
+
+      &__link:hover {
+        background-color: rgba($main-color--black, 0.1);
+      }
+    }
+
+    // menu__list hover 시 dropdown 표시
+    &__list:hover &-dropdown {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &-util {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &__list {
+      display: flex;
+      align-items: center;
+    }
+
+    &__item {
+      margin-right: 1rem;
+    }
+
+    &__link {
+      border-radius: initial;
+      text-align: center;
+      width: 6rem; // 딱 텍스트 wrap이 안되는 크기
+
+      &--login {
+        @include underline-hover-fill($main-color);
+      }
+
+      &--join {
+        @include underline-hover-fill($main-color--silver);
+      }
+
+      &--logout {
+        @include underline-hover-fill($main-color--silver);
+      }
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+    }
+
+    &__btn {
+      display: none;
+      position: absolute;
+      right: 2.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.8rem;
+      height: 1.8rem;
+      cursor: pointer;
+
+      @media screen and (max-width: 1024px) {
+        display: block;
+      }
+    }
+  }
+
+  &-menu {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+}
